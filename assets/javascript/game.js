@@ -43,6 +43,6 @@ document.onkeyup = function(event) {
 		losses++;
 		document.querySelector("#lose").innerHTML = "Loses: " + losses;
 		restart();
-		alert("Such a shame, you lost. Try harder next time.")
+		alert("Such a shame, you lost. Try harder next time.");
 	}
   };
