@@ -37,10 +37,12 @@ document.onkeyup = function(event) {
 		wins++;
 		document.querySelector("#wins").innerHTML = "Wins: " + wins;
 		restart();
+		alert("You WIN! Excellent! Your skills far surpass mine.");
 	} 
 	else if (guessesLeft === 0) {
 		losses++;
 		document.querySelector("#lose").innerHTML = "Loses: " + losses;
 		restart();
+		alert("Such a shame, you lost. Try harder next time.")
 	}
   };
