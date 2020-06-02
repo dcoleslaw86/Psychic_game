@@ -17,7 +17,7 @@ html {
   }
  
   .list-group {
-      max-width: 950px;
+      max-width: 1110px;
   }
 
   .page-header {
@@ -26,7 +26,7 @@ html {
 
   .containter {
       width: 100%;
-      max-width: 950px;
+      max-width: 1110px;
       margin: 0 auto;
       background: red;
   }

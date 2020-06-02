@@ -1,48 +1,48 @@
-var computerChoices = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+var choices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
 var wins = 0;
 var losses = 0;
-var guessesLeft = 9;
-var letterUser = [];
-var eachofLetters = null;
+var guessesLeft = 7;
+var chosenLetters = [];
 
-var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+var randomizedLetter = Math.floor(Math.random() * choices.length);
+var computerPicks = choices[randomizedLetter];
+console.log(computerPicks + " picked by the computer.");
 
-function countGuessesLeft() {
-	document.querySelector("#guessesLeft").innerHTML = "Guesses Left: " + guessesLeft;
+function reset() {
+	guessesLeft = 7;
+    document.getElementById("guessesLeft").innerText = "Guesses Left: " + guessesLeft;
+    chosenLetters = [];
+    document.getElementById("userGuesses").innerText = "Your Guesses so far: ";
+    randomizedLetter = Math.floor(Math.random() * choices.length);
+    computerPicks = choices[randomizedLetter];
+	console.log(computerPicks + " picked by the computer.");
 }
-
-function farUserGuesses() {
-	document.querySelector("#letter").innerHTML = "Your Guesses so far: " + letterUser.join(' ');
-}
-
-countGuessesLeft();
-
-var restart = function() {
-	guessesLeft = 9;
-	letterUser = [];
-	var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
-}
-
 document.onkeyup = function(event) {
-	guessesLeft--;
-
-	var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-	letterUser.push(userGuess);
-	countGuessesLeft();
-	farUserGuesses();
-
-	if (userGuess === computerGuess){
-		wins++;
-		document.querySelector("#wins").innerHTML = "Wins: " + wins;
-		restart();
-		alert("You WIN! Excellent! Your skills far surpass mine.");
-	} 
-	else if (guessesLeft === 0) {
-		losses++;
-		document.querySelector("#lose").innerHTML = "Loses: " + losses;
-		restart();
-		alert("Such a shame, you lost. Try harder next time.");
+	var userInput = event.key;
+    var validChoices = /[a-z]/;
+    if (!validChoices.test(userInput)) {
+    alert("please enter a letter");
+    }
+    else {
+    console.log(userInput);
+    }
+	if(userInput !== computerPicks){
+        guessesLeft--;
+        document.getElementById("guessesLeft").innerText = "Guesses Left: " + guessesLeft;
+        chosenLetters.push(userInput);
+		document.getElementById("userGuesses").innerText = "Your Guesses so far: " + chosenLetters;
 	}
+	else if (userInput === computerPicks){
+        wins++;
+        alert("You WIN! Excellent! Your skills far surpass mine.");
+        document.getElementById("wins").innerText = "Wins: " + wins;
+        reset();
+	}
+	if (guessesLeft === 0){
+        losses++;
+        document.getElementById("lose").innerText = "Loses: " + losses;
+        alert("Such a shame, you lost. Try harder next time.");
+        reset();
+	} 
   };
