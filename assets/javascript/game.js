@@ -22,7 +22,7 @@ document.onkeyup = function(event) {
 	var userInput = event.key;
     var validChoices = /[a-z]/;
     if (!validChoices.test(userInput)) {
-    alert("please enter a letter");
+    alert("please enter a valid letter that is not a symbol.");
     }
     else {
     console.log(userInput);
